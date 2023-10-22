@@ -6,7 +6,7 @@
 #include <string_view>
 
 /**
- * @brief 
+ * @brief A mask that specifies the desired access rights to the key to be opened. See https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-key-security-and-access-rights for all possible values.
  * 
  * @tparam ACCESS_MASK 
  */
@@ -18,6 +18,12 @@ private:
     HKEY m_key_handle;
 
 public:
+    /**
+     * @brief Construct a new reg helper object
+     * 
+     * @param parent_key The main top level registry keys [HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS]
+     * @param reg_key A path string identifying the key to open under the top level key.
+     */
     reg_helper(HKEY parent_key, std::string_view reg_key) :
         m_reg_key(reg_key)
     {
